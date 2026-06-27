@@ -10,10 +10,12 @@ import org.springframework.context.annotation.Profile;
 
 import com.thaeltech.course.entities.Category;
 import com.thaeltech.course.entities.Order;
+import com.thaeltech.course.entities.OrderItem;
 import com.thaeltech.course.entities.Product;
 import com.thaeltech.course.entities.User;
 import com.thaeltech.course.entities.enums.OrderStatus;
 import com.thaeltech.course.repositories.CategoryRepository;
+import com.thaeltech.course.repositories.OrderItemRepository;
 import com.thaeltech.course.repositories.OrderRepository;
 import com.thaeltech.course.repositories.ProductRepository;
 import com.thaeltech.course.repositories.UserRepository;
@@ -29,6 +31,8 @@ public class TestConfig implements CommandLineRunner{
 	private CategoryRepository categoryRepository;
 	@Autowired
 	private ProductRepository productRepository;
+	@Autowired
+	private OrderItemRepository orderItemRepository;
 
 	
 	@Override
@@ -65,6 +69,14 @@ public class TestConfig implements CommandLineRunner{
 		p5.getCategories().add(cat2);
 		
 		productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
+		
+		OrderItem oi1 = new OrderItem(o1, p2, 2, p2.getPrice());
+		OrderItem oi2 = new OrderItem(o1, p3, 1, p3.getPrice());
+		OrderItem oi3 = new OrderItem(o2, p3, 2, p3.getPrice());
+		OrderItem oi4 = new OrderItem(o3, p5, 2, p5.getPrice()); 
+
+		orderItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4));
+		
 		
 	}
 	
