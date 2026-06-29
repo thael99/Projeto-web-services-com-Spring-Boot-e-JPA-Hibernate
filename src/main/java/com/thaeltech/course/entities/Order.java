@@ -88,7 +88,7 @@ public class Order implements Serializable {
 		return payment;
 	}
 	
-	public Double ogetTotal() {
+	public Double getTotal() {
 		Double total = 0.0;
 		for (OrderItem x: items) {
 			total += x.getSubTotal();
